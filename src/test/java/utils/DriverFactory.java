@@ -27,6 +27,13 @@ public class DriverFactory {
                     )
             );
 
+            // Use headless Chrome only when running in GitHub Actions
+            if (System.getenv("GITHUB_ACTIONS") != null) {
+                options.addArguments("--headless");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+            }
+
             return new ChromeDriver(options);
         }
 
