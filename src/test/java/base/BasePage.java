@@ -14,14 +14,22 @@ public class BasePage {
         this.driver = driver;
     }
 
-    public void click (By locator){
-        driver.findElement(locator).click();
+    public void click(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
-    public void enterText(By locator , String text){
-        driver.findElement(locator).sendKeys(text);
+
+    public void enterText(By locator, String text) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator))
+                .sendKeys(text);
     }
-    public String getText(By locator){
-        return driver.findElement(locator).getText();
+
+    public String getText(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(locator)
+        ).getText();
     }
 
     public void clickWhenReady(By locator) {
