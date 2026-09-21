@@ -108,12 +108,11 @@ public class ProductPage extends BasePage {
     }
 
     public void selectProduct(String productName) {
-
         By product = By.xpath(
                 "//a[contains(@id,'title_link')][.//div[@data-test='inventory-item-name' and text()='"
                         + productName + "']]"
         );
 
-        driver.findElement(product).click();
+        click(product);
     }
 }
